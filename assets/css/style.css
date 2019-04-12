@@ -19,7 +19,8 @@ body {
 }
 
 .header {
-    background: #ebebeb;
+    
+   
     font-family: cursive;
     font-size: 1.6em;
     text-align: center;
@@ -94,9 +95,11 @@ body {
 }
 
 button {
-    font-size: 24px;
     font-family: cursive;
+    color: #a67034;
+    font-size: 24px;
     margin-top: 8px;
+    box-shadow: 5px 5px 2px 1px #a67034;
 }
 
 button:hover{
@@ -104,9 +107,6 @@ button:hover{
 }
    
 
-
-
-
-#banner {
-    width: 70%;
+img {
+    width: 700px;
 }
