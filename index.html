@@ -11,6 +11,7 @@
     <div class="container">
 
         <div class="headerWrap">
+            <audio id="audio" src="assets/audio/Jupiter.mp3"></audio>
             <div class="header">Test Your Knowledge of Classical Music!</div>
         </div>
 
@@ -18,7 +19,11 @@
         <div class="introWrap">
             <button id="startBtn">Let's Get Started!</button>
         </div>
-
+        
+        <div class="musicWrap">
+            <input type="button" value="Click For Music!" onclick="play()">
+            <audio id="audio" src="assets/audio/Jupiter.mp3"></audio>
+        </div>
 
         <div class="gameWrap" style="display:none">
             <div id="timeLeft"></div>
@@ -47,8 +52,14 @@
 
 
 
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="assets/javascript/app.js"></script>
+
+
+
+
 </body>
 
 </html>

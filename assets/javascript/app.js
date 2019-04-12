@@ -107,6 +107,11 @@ var isDone = false;
 var isRunning = false;
 var newArray = [];
 
+// Set Music
+function play() {
+    var audio = document.getElementById("audio");
+    audio.play();
+}
 
 //Set Timer to 30 seconds per question
 var runTimer = () => {
@@ -204,12 +209,12 @@ var answerCheck = () => {
             setTimeout(displayQuestion, 5 * 1000);
         }
     })
-};
+}
 
 function displayGif() {
     $("#gifDisplay").css("display", "block");
     $("#gifDisplay").attr("src", choice.gif);
-    setTimeout(displayQuestion, 1 * 1000);
+    setTimeout(displayQuestion, 4 * 1000);
 }
 
 var displayResults = () => {
@@ -246,7 +251,7 @@ $("#retryBtn").on("click", function () {
     $(".exitWrap").css("display", "none");
     $(".introWrap").css("display", "grid");
     // Push the stored array back into "questions" to restart the game
-    for(var i = 0; i < newArray.length; i++) {
+    for (var i = 0; i < newArray.length; i++) {
         questions.push(newArray[i]);
     };
     isDone = false;
