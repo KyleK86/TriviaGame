@@ -92,7 +92,7 @@ questions = [{
 
 
 //GLOBAL VARIABLES
-var questionNumber = 0;
+var questionNumber = 1;
 var maxCount = 10;
 var skippedCount = 0;
 var missedCount = 0;
@@ -102,7 +102,9 @@ var correctCount = 0;
 var wrongCount = 0;
 var choice;
 var count = 30;
-isRunning = false;
+var isDone = false;
+var isRunning = false;
+var newArray = [];
 
 
 //Set Timer to 30 seconds per question
@@ -119,9 +121,9 @@ var countDown = () => {
     //If count hits zero and there ARE questions remaining
     if (count === -1) {
         skippedCount++;
+        $("#answer").html("<p>Time is up!</p>")
         stopTimer();
         displayGif();
-        $("#answer").html("<p>Time is up!</p>")
         answerCheck();
     }
 }
@@ -141,10 +143,9 @@ var displayQuestion = () => {
     index = Math.floor(Math.random() * questions.length)
     choice = questions[index];
     answer = choice.correct;
+    $("#question").html(`Question ${questionNumber}:${choice.ques}`)
     questionNumber++;
 
-
-    $("#question").html(`Question ${questionNumber}:${choice.ques}`)
 
     //loop through answers of chosen question and display to HTML
     for (i = 0; i < choice.answers.length; i++) {
@@ -152,7 +153,7 @@ var displayQuestion = () => {
         selectedAnswers.addClass("answerChoices");
         selectedAnswers.text(choice.answers[i]);
         $("#answer").append(selectedAnswers);
-       
+
         runTimer();
         countDown();
         answerCheck();
@@ -181,33 +182,49 @@ var answerCheck = () => {
             $("#answer").html("<div> Incorrect! The answer was " + choice.correct + "</div>");
 
         }
-        // //If there are no more questions, then this logic runs
-        // if ((correctCount + wrongCount + skippedCount) === maxCount) {
-        //     for (i = 0; i < newArray.length; i++) {
-        //         questions.push(newArray[i]);
-        //     }
-
-        // }
-
+        //If there are no more questions, then this logic runs
+        if ((correctCount + wrongCount + skippedCount) === maxCount) {
+            isDone = true;
+            stopTimer();
+            $("#gifDisplay").css("display", "block");
+            $("#gifDisplay").attr("src", choice.gif);
+            setTimeout(displayQuestion, 5 * 1000);
+        }
     })
 };
-
-
 
 function displayGif() {
     $("#gifDisplay").css("display", "block");
     $("#gifDisplay").attr("src", choice.gif);
-    setTimeout(displayQuestion,4*1000);
+    setTimeout(displayQuestion, 4 * 1000);
 }
 
 //Display one question to screen/ prompt user for answer
 
-
 $("#startBtn").on("click", function () {
-
-    $(".introWrap").css("display", "none")
+// Reset Variables
+newArray = [];
+questionNumber = 1;
+correctCount = 0;
+wrongCount = 0;
+skippedCount = 0;
+// Hide intro and display game
+    $(".introWrap").css("display", "none");
     $(".gameWrap").css("display", "grid");
+    for (var i = 0; i < questions.length; i++) {
+        newArray.push(questions[i]);
+    }
     displayQuestion();
-    console.log(count);
+})
+
+$("#retryBtn").on("click", function () {
+    //Hide results and display intro
+    $("exitWrap").css("display", "none");
+    $("introWrap").css("display", "grid");
+    //Push the stored array back into "questions" to restart game
 
 })
+for(i =0; i < newArray.length; i++) {
+    questions.push(newArray[i]);
+};
+isDone = false;
