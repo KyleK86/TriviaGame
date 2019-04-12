@@ -50,7 +50,23 @@ body {
 }
 #question {
     padding-bottom: 20px;
+   
 }
 #answerBackground {
     background-color: none;
 }
+
+#answer:hover {
+   cursor: pointer;
+  }
+
+  .answerChoices:hover {
+      background-color: #888888;
+      cursor: pointer;
+  }
+
+  #gifDisplay {
+      margin: auto;
+  }
+
+
