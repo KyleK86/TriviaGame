@@ -1,39 +1,46 @@
 body {
-    background: url("../images/Spirit-composers-674x420.jpg"); 
+    background: url("../images/Spirit-composers-674x420.jpg");
     background-size: cover;
     width: 960px;
     margin: auto;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: cursive;
 }
+
 .container {
     padding-top: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1em;
 }
+
 .headerWrap {
     grid-column-start: 1;
     grid-column-end: 4;
 }
+
 .header {
     background: #ebebeb;
-    font-size:1.6em;
+    font-family: cursive;
+    font-size: 1.6em;
     text-align: center;
     padding: 1em;
 
 }
+
 .gameWrap {
     grid-column-start: 1;
     grid-column-end: 4;
-    background-color: #ebebeb;
+    background: rgba(255, 255, 255, 0.5);
     font-size: 1.2em;
     text-align: center;
     padding: 0.5em;
     line-height: 1.6em;
 }
+
 #timeLeft {
     padding: 0.5em;
 }
+
 #startBtn {
     text-align: center;
     margin: auto;
@@ -41,32 +48,55 @@ body {
     width: 300px;
     background-color: #ebebeb;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
- 
+
 }
+
 .introWrap {
-    margin:auto;
+    margin: auto;
     grid-column-start: 2;
     grid-column-end: 3;
 }
+
 #question {
     padding-bottom: 20px;
-   
+
 }
+
 #answerBackground {
     background-color: none;
 }
 
+#answer {
+    padding-bottom: 20px;
+}
+
 #answer:hover {
-   cursor: pointer;
-  }
+    cursor: pointer;
+}
 
-  .answerChoices:hover {
-      background-color: #888888;
-      cursor: pointer;
-  }
+.answerChoices:hover {
+    background-color: #888888;
+    cursor: pointer;
+}
 
-  #gifDisplay {
-      margin: auto;
-  }
+#gifDisplay {
+    margin: auto;
+}
 
-
+.exitWrap {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    margin: auto;
+    font-size: 32px;
+    font-weight: bold;
+}
+button {
+    font-size: 24px;
+    font-family: cursive;
+    margin-top: 8px;
+}
+#banner {
+    width: 70%;
+}

@@ -92,6 +92,7 @@ questions = [{
 
 
 //GLOBAL VARIABLES
+var intervalId;
 var questionNumber = 1;
 var maxCount = 10;
 var skippedCount = 0;
@@ -126,6 +127,12 @@ var countDown = () => {
         displayGif();
         answerCheck();
     }
+    // If timer hits 0 and there are NO questions remaining, run this logic
+    if (count === -1 && (correctCount + wrongCount + skippedCount) === maxCount) {
+        isDone = true;
+        displayResults();
+        answerCheck();
+    }
 }
 
 //Stop timer and clear interval
@@ -154,16 +161,21 @@ var displayQuestion = () => {
         selectedAnswers.text(choice.answers[i]);
         $("#answer").append(selectedAnswers);
 
-        runTimer();
-        countDown();
-        answerCheck();
-
     }
+    // Removes question from array after is has been selected
+    for (var i = 0; i < questions.length; i++) {
+        if (questions[i] === choice) {
+            questions.splice(i, 1);
+        }
+    }
+    runTimer();
+    countDown();
+    answerCheck();
 }
 
 //click function to capture the user's choice
 var answerCheck = () => {
-    $(document).on("click", ".answerChoices", function (e) {
+    $(".answerChoices").on("click", function (e) {
         countDown();
         var clickedItem = e.target;
         userChoice = clickedItem.innerText;
@@ -186,6 +198,7 @@ var answerCheck = () => {
         if ((correctCount + wrongCount + skippedCount) === maxCount) {
             isDone = true;
             stopTimer();
+            displayResults();
             $("#gifDisplay").css("display", "block");
             $("#gifDisplay").attr("src", choice.gif);
             setTimeout(displayQuestion, 5 * 1000);
@@ -196,19 +209,30 @@ var answerCheck = () => {
 function displayGif() {
     $("#gifDisplay").css("display", "block");
     $("#gifDisplay").attr("src", choice.gif);
-    setTimeout(displayQuestion, 4 * 1000);
+    setTimeout(displayQuestion, 1 * 1000);
+}
+
+var displayResults = () => {
+    stopTimer();
+    $(".gameWrap").css("display", "none");
+    $(".exitWrap").css("display", "grid");
+    $("#results").html("<h2>Game Over!</h2>");
+    $("#results").append("<h3>Check Out Your Score Below: </h3>");
+    $("#results").append("<p>Correct Answers: <span id='correctCount'>" + correctCount + "</span></p>")
+    $("#results").append("<p>Wrong Answers: <span id='wrongCount'>" + wrongCount + "</span></p>")
+    $("#results").append("<p>Skipped: <span id='skippedCount'>" + skippedCount + "</span></p>")
 }
 
 //Display one question to screen/ prompt user for answer
 
 $("#startBtn").on("click", function () {
-// Reset Variables
-newArray = [];
-questionNumber = 1;
-correctCount = 0;
-wrongCount = 0;
-skippedCount = 0;
-// Hide intro and display game
+    // Reset Variables
+    newArray = [];
+    questionNumber = 1;
+    correctCount = 0;
+    wrongCount = 0;
+    skippedCount = 0;
+    // Hide intro and display game
     $(".introWrap").css("display", "none");
     $(".gameWrap").css("display", "grid");
     for (var i = 0; i < questions.length; i++) {
@@ -222,9 +246,8 @@ $("#retryBtn").on("click", function () {
     $("exitWrap").css("display", "none");
     $("introWrap").css("display", "grid");
     //Push the stored array back into "questions" to restart game
-
-})
-for(i =0; i < newArray.length; i++) {
-    questions.push(newArray[i]);
-};
-isDone = false;
+    for (i = 0; i < newArray.length; i++) {
+        questions.push(newArray[i]);
+    }
+    isDone = false;
+});
