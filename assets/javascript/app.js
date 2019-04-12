@@ -217,13 +217,13 @@ var displayResults = () => {
     $(".gameWrap").css("display", "none");
     $(".exitWrap").css("display", "grid");
     $("#results").html("<h2>Game Over!</h2>");
-    $("#results").append("<h3>Check Out Your Score Below: </h3>");
+    $("#results").append("<h3>Here's How You Did!: </h3>");
     $("#results").append("<p>Correct Answers: <span id='correctCount'>" + correctCount + "</span></p>")
     $("#results").append("<p>Wrong Answers: <span id='wrongCount'>" + wrongCount + "</span></p>")
     $("#results").append("<p>Skipped: <span id='skippedCount'>" + skippedCount + "</span></p>")
 }
 
-//Display one question to screen/ prompt user for answer
+// Fuctions for game
 
 $("#startBtn").on("click", function () {
     // Reset Variables
@@ -242,12 +242,12 @@ $("#startBtn").on("click", function () {
 })
 
 $("#retryBtn").on("click", function () {
-    //Hide results and display intro
-    $("exitWrap").css("display", "none");
-    $("introWrap").css("display", "grid");
-    //Push the stored array back into "questions" to restart game
-    for (i = 0; i < newArray.length; i++) {
+    // Hide results and display intro  
+    $(".exitWrap").css("display", "none");
+    $(".introWrap").css("display", "grid");
+    // Push the stored array back into "questions" to restart the game
+    for(var i = 0; i < newArray.length; i++) {
         questions.push(newArray[i]);
-    }
+    };
     isDone = false;
 });

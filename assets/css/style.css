@@ -92,11 +92,21 @@ body {
     font-size: 32px;
     font-weight: bold;
 }
+
 button {
     font-size: 24px;
     font-family: cursive;
     margin-top: 8px;
 }
+
+button:hover{
+    cursor: pointer;
+}
+   
+
+
+
+
 #banner {
     width: 70%;
 }
