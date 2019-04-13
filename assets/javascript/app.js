@@ -154,6 +154,7 @@ var displayQuestion = () => {
     $("#gifDisplay").css("display", "none");
     index = Math.floor(Math.random() * questions.length)
     choice = questions[index];
+    $("#answer").empty();
     answer = choice.correct;
     $("#question").html(`Question ${questionNumber}:${choice.ques}`)
     questionNumber++;
