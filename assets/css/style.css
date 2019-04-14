@@ -16,6 +16,7 @@ body {
 .headerWrap {
     grid-column-start: 1;
     grid-column-end: 4;
+    border-radius: 25px;
 }
 
 .header {
@@ -36,6 +37,7 @@ body {
     text-align: center;
     padding: 0.5em;
     line-height: 1.6em;
+    border-radius: 25px;
 }
 
 #timeLeft {
@@ -49,13 +51,14 @@ body {
     width: 300px;
     background-color: #ebebeb;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+    border-radius: 25px;
 }
 
 .introWrap {
     margin: auto;
     grid-column-start: 2;
     grid-column-end: 3;
+    border-radius: 25px;
 }
 
 #question {
@@ -83,8 +86,8 @@ body {
 
 #gifDisplay {
     margin: auto;
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
 }
 
 .exitWrap {
@@ -95,6 +98,7 @@ body {
     margin: auto;
     font-size: 32px;
     font-weight: bold;
+    border-radius: 25px;
 }
 
 button {
@@ -102,7 +106,9 @@ button {
     color: #a67034;
     font-size: 24px;
     margin-top: 8px;
-    box-shadow: 5px 5px 2px 1px #a67034;
+    border-radius: 25px;
+    box-shadow: 5px 5px 8px 1px #a67034;
+
 }
 
 button:hover{
@@ -117,4 +123,16 @@ img {
     grid-column-start: 2;
     grid-column-end: 3;
     margin:auto;
+    border-radius: 25px;
+}
+
+#pauseBtn {
+    border: none;
+    padding: 8px;
+    font-family: cursive;
+    box-shadow: 5px 5px 8px 1px #a67034;
+    background: #ebebeb;
+    color: #a67034;
+    border-radius: 25px;
+
 }

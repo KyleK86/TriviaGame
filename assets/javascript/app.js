@@ -106,13 +106,15 @@ var count = 30;
 var isDone = false;
 var isRunning = false;
 var newArray = [];
+var audio = document.getElementById("audio");
 
 // Set Music
-function play() {
-    var audio = document.getElementById("audio");
-    audio.play();
+function playAudio() {
+   audio.play();
 }
-
+function pauseAudio() {
+   audio.pause();
+}
 //Set Timer to 30 seconds per question
 var runTimer = () => {
     if (!isRunning) {
@@ -150,33 +152,35 @@ var stopTimer = () => {
 
 //Randomize questions
 var displayQuestion = () => {
-    count = 30;
-    $("#gifDisplay").css("display", "none");
-    index = Math.floor(Math.random() * questions.length)
-    choice = questions[index];
-    $("#answer").empty();
-    answer = choice.correct;
-    $("#question").html(`Question ${questionNumber}:${choice.ques}`)
-    questionNumber++;
+    if (!isDone) {
+        count = 30;
+        $("#answer").empty();
+        $("#gifDisplay").css("display", "none");
+        index = Math.floor(Math.random() * questions.length)
+        choice = questions[index];
+        answer = choice.correct;
+        $("#question").html(`Question ${questionNumber}:${choice.ques}`)
+        questionNumber++;
 
-
-    //loop through answers of chosen question and display to HTML
-    for (i = 0; i < choice.answers.length; i++) {
-        var selectedAnswers = $("<div>");
-        selectedAnswers.addClass("answerChoices");
-        selectedAnswers.text(choice.answers[i]);
-        $("#answer").append(selectedAnswers);
-
-    }
-    // Removes question from array after is has been selected
-    for (var i = 0; i < questions.length; i++) {
-        if (questions[i] === choice) {
-            questions.splice(i, 1);
+        // Removes question from array after is has been selected
+        for (var i = 0; i < questions.length; i++) {
+            if (questions[i] === choice) {
+                questions.splice(i, 1);
+            }
         }
+
+        //loop through answers of chosen question and display to HTML
+        for (i = 0; i < choice.answers.length; i++) {
+            var selectedAnswers = $("<div>");
+            selectedAnswers.addClass("answerChoices");
+            selectedAnswers.text(choice.answers[i]);
+            $("#answer").append(selectedAnswers);
+
+        }
+        runTimer();
+        countDown();
+        answerCheck();
     }
-    runTimer();
-    countDown();
-    answerCheck();
 }
 
 //click function to capture the user's choice
@@ -204,10 +208,9 @@ var answerCheck = () => {
         if ((correctCount + wrongCount + skippedCount) === maxCount) {
             isDone = true;
             stopTimer();
-            displayResults();
             $("#gifDisplay").css("display", "block");
             $("#gifDisplay").attr("src", choice.gif);
-            setTimeout(displayQuestion, 5 * 1000);
+            setTimeout(displayResults, 4 * 1000);
         }
     })
 }
@@ -215,7 +218,7 @@ var answerCheck = () => {
 function displayGif() {
     $("#gifDisplay").css("display", "block");
     $("#gifDisplay").attr("src", choice.gif);
-    setTimeout(displayQuestion, 4 * 1000);
+    setTimeout(displayQuestion, .5 * 1000);
 }
 
 var displayResults = () => {
@@ -239,16 +242,19 @@ $("#startBtn").on("click", function () {
     wrongCount = 0;
     skippedCount = 0;
     // Hide intro and display game
+    $("#pauseBtn").css("display", "block");
     $(".introWrap").css("display", "none");
     $(".gameWrap").css("display", "grid");
     for (var i = 0; i < questions.length; i++) {
         newArray.push(questions[i]);
     }
+    playAudio();
     displayQuestion();
 })
 
 $("#retryBtn").on("click", function () {
-    // Hide results and display intro  
+    // Hide results and display intro 
+    $("#pauseBtn").css("display", "none");
     $(".exitWrap").css("display", "none");
     $(".introWrap").css("display", "grid");
     // Push the stored array back into "questions" to restart the game
