@@ -218,7 +218,7 @@ var answerCheck = () => {
 function displayGif() {
     $("#gifDisplay").css("display", "block");
     $("#gifDisplay").attr("src", choice.gif);
-    setTimeout(displayQuestion, .5 * 1000);
+    setTimeout(displayQuestion, 3 * 1000);
 }
 
 var displayResults = () => {
