@@ -110,10 +110,11 @@ var audio = document.getElementById("audio");
 
 // Set Music
 function playAudio() {
-   audio.play();
+    audio.play();
 }
+
 function pauseAudio() {
-   audio.pause();
+    audio.pause();
 }
 //Set Timer to 30 seconds per question
 var runTimer = () => {
@@ -223,6 +224,7 @@ function displayGif() {
 
 var displayResults = () => {
     stopTimer();
+    $(".retryWrap").css("display", "grid");
     $(".gameWrap").css("display", "none");
     $(".exitWrap").css("display", "grid");
     $("#results").html("<h2>Game Over!</h2>");

@@ -20,8 +20,8 @@ body {
 }
 
 .header {
-    
-   
+
+
     font-family: cursive;
     font-size: 1.6em;
     text-align: center;
@@ -93,7 +93,6 @@ body {
 .exitWrap {
     grid-column-start: 1;
     grid-column-end: 4;
-    height: 50%;
     background: rgba(255, 255, 255, 0.5);
     margin: auto;
     font-size: 32px;
@@ -111,18 +110,19 @@ button {
 
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
 }
-   
+
 
 img {
     width: 700px;
 }
+
 .musicWrap {
     grid-column-start: 2;
     grid-column-end: 3;
-    margin:auto;
+    margin: auto;
     border-radius: 25px;
 }
 
@@ -136,6 +136,13 @@ img {
     border-radius: 25px;
 
 }
+
 #pauseBtn:hover {
     cursor: pointer;
+}
+
+.retryWrap {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    margin: auto;
 }
